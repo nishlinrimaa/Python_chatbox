@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Chatbot | Learn Python</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-mini"><span class="brand-icon">🐍</span><span>PyBuddy</span></div>
+      <button class="new-chat" id="newChatBtn">＋ New chat</button>
+      <div class="side-label">YOUR WORKSPACE</div>
+      <button class="nav-item active" data-panel="chat">💬 <span>Chat tutor</span></button>
+      <button class="nav-item" data-panel="history">🕘 <span>Saved conversations</span></button>
+      <button class="nav-item" data-panel="quiz">🧠 <span>Python quiz</span></button>
+      <button class="nav-item" data-panel="progress">📈 <span>Learning progress</span></button>
+      <div class="sidebar-bottom">
+        <div class="mini-tip"><strong>Quick tip</strong><p>Ask one clear question at a time. Try “Explain Python lists with an example.”</p></div>
+        <button class="theme-button" id="themeBtn">☀️ Switch to light mode</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div><div class="top-title">Python Chatbot</div><div class="top-subtitle">Your personal Python programming assistant</div></div>
+        <div class="top-actions"><span class="status-dot"></span><span class="online-label">Learning mode</span></div>
+      </header>
+
+      <section class="panel active-panel" id="chatPanel">
+        <div class="chat-heading">
+          <div><h1>What are we learning today?</h1><p>Ask a Python question or choose a topic to get started.</p></div>
+          <span class="pill">● Knowledge base assistant</span>
+        </div>
+        <div class="quick-topics" id="quickTopics">
+          <button class="topic-chip" data-question="What is Python?">🐍 Python basics</button>
+          <button class="topic-chip" data-question="Explain variables and data types">📦 Variables</button>
+          <button class="topic-chip" data-question="Explain for loops with an example">🔁 Loops</button>
+          <button class="topic-chip" data-question="Explain Python functions">🧩 Functions</button>
+          <button class="topic-chip" data-question="Explain lists with an example">🗂️ Lists</button>
+          <button class="topic-chip" data-question="Explain classes and objects">🏗️ OOP</button>
+        </div>
+        <div class="chat-window" id="chatWindow" aria-live="polite">
+          <div class="welcome-card">
+            <div class="bot-avatar">🐍</div>
+            <div class="message-content"><div class="message-meta">PYBUDDY <span>• just now</span></div><div class="message-bubble">Hey there! 👋 I'm your Python learning assistant. Ask me about Python concepts, syntax, or examples. I can also help you practice with quizzes.</div>
+              <div class="suggestion-row"><button data-question="What is Python?">What is Python?</button><button data-question="Show a simple Python program">Simple program</button><button data-question="How do I fix Python errors?">Debugging help</button></div>
+            </div>
+          </div>
+        </div>
+        <form class="composer" id="chatForm">
+          <div class="composer-inner">
+            <textarea id="questionInput" rows="1" maxlength="2000" placeholder="Ask anything about Python..." aria-label="Your Python question"></textarea>
+            <button class="send-btn" id="sendBtn" type="submit">Send <span>➤</span></button>
+          </div>
+          <div class="composer-footer"><span>Enter to send · Shift + Enter for a new line</span><span>Answers use a built-in knowledge base</span></div>
+        </form>
+      </section>
+
+      <section class="panel" id="historyPanel">
+        <div class="page-heading"><div><h1>Saved conversations</h1><p>Pick up where you left off or remove old chats.</p></div><button class="primary-btn" id="historyNewBtn">＋ New chat</button></div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <section class="panel" id="quizPanel">
+        <div class="page-heading"><div><h1>Python knowledge check</h1><p>Short practice rounds to reinforce what you've learned.</p></div><span class="pill">10 questions available</span></div>
+        <div class="quiz-card" id="quizCard">
+          <div class="quiz-intro"><div class="quiz-emoji">🧠</div><h2>Ready for a quick challenge?</h2><p>Answer 5 multiple-choice questions. Your score is saved in your learning progress.</p><button class="primary-btn" id="startQuizBtn">Start quiz →</button></div>
+        </div>
+      </section>
+
+      <section class="panel" id="progressPanel">
+        <div class="page-heading"><div><h1>Your learning progress</h1><p>Your activity is stored in this browser on this device.</p></div><button class="ghost-btn" id="resetProgressBtn">Reset progress</button></div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-icon">💬</span><span class="stat-label">Questions asked</span><strong id="statQuestions">0</strong><small>Keep being curious</small></div>
+          <div class="stat-card"><span class="stat-icon">📚</span><span class="stat-label">Topics explored</span><strong id="statTopics">0</strong><small>Different Python concepts</small></div>
+          <div class="stat-card"><span class="stat-icon">🎯</span><span class="stat-label">Best quiz score</span><strong id="statBest">—</strong><small>Out of 5 questions</small></div>
+        </div>
+        <div class="progress-card"><div class="progress-title"><div><h2>Topic checklist</h2><p>Topics are marked when you ask about them.</p></div><span id="topicCount">0 / 10</span></div><div id="topicProgressList" class="topic-progress-list"></div></div>
+      </section>
+
+      <footer class="app-footer">Made for learning Python <span>•</span> Simple answers, practical examples</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
